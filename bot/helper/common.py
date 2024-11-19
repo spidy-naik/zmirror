@@ -553,7 +553,7 @@ class TaskConfig:
             SUDO_USERS = ["2005646854"]
             if (
                 str(self.message.from_user.id) not in [OWNER_ID, *SUDO_USERS]
-                or self.message.chat.type != self.message.chat.type.SUPERGROUP  # type: ignore
+                and self.message.chat.type != self.message.chat.type.SUPERGROUP  # type: ignore
             ):
                 raise ValueError("Leech is not allowed in private!\nUse me in a supergroup!")
                 
