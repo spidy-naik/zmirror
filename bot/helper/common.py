@@ -549,18 +549,22 @@ class TaskConfig:
                 ):
                     raise ValueError("You must use the same config to clone!")
         else:
-            if self.message.chat.type != self.message.chat.type.SUPERGROUP: # type: ignore
+            if (
+                str(self.message.from_user.id) not in [OWNER_ID, *SUDO_USERS]
+                and self.message.chat.type != self.message.chat.type.SUPERGROUP  # type: ignore
+            ):
                 raise ValueError("Leech is not allowed in private!\nUse me in a supergroup!")
+                
             self.up_dest = (
                 self.up_dest
                 or self.user_dict.get("leech_dest")
                 or config_dict["USER_LEECH_DESTINATION"]
             )
+
             self.mixed_leech = IS_PREMIUM_USER and (
                 self.user_dict.get("mixed_leech")
                 or config_dict["MIXED_LEECH"]
-                and "mixed_leech"
-                not in self.user_dict
+                and "mixed_leech" not in self.user_dict
             )
             if self.up_dest:
                 if not isinstance(
