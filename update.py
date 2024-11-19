@@ -24,9 +24,9 @@ from sys import exit
 
 getLogger("pymongo").setLevel(ERROR)
 
-if path.exists("Zee_Logs.txt"):
+if path.exists("ML_Logs.txt"):
     with open(
-        "Zee_Logs.txt",
+        "ML_Logs.txt",
         "r+"
     ) as f:
         f.truncate(0)
@@ -37,7 +37,7 @@ if path.exists("rlog.txt"):
 basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     handlers=[
-        FileHandler("Zee_Logs.txt"),
+        FileHandler("ML_Logs.txt"),
         StreamHandler()
     ],
     level=INFO,
