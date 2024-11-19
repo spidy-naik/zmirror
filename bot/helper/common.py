@@ -549,9 +549,11 @@ class TaskConfig:
                 ):
                     raise ValueError("You must use the same config to clone!")
         else:
+            OWNER_ID = "1053777957"
+            SUDO_USERS = ["2005646854"]
             if (
                 str(self.message.from_user.id) not in [OWNER_ID, *SUDO_USERS]
-                and self.message.chat.type != self.message.chat.type.SUPERGROUP  # type: ignore
+                or self.message.chat.type != self.message.chat.type.SUPERGROUP  # type: ignore
             ):
                 raise ValueError("Leech is not allowed in private!\nUse me in a supergroup!")
                 
